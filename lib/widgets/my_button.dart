@@ -1,0 +1,33 @@
+
+import 'package:flutter/material.dart';
+import 'package:milk/model/theme_model.dart';
+import 'package:milk/resources/resources.dart';
+class MyButton extends StatelessWidget {
+
+  const MyButton({
+    Key key,
+    this.text: '',
+    @required this.onPressed,
+  }): super(key: key);
+
+  final String text;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    bool isDark = ThemeModel.isuserDarkMode();
+    return FlatButton(
+      onPressed: onPressed,
+      textColor: isDark ? Colours.dark_button_text : Colors.white,
+      color: isDark ? Colours.dark_app_main : Colours.app_main,
+      disabledTextColor: isDark ? Colours.dark_text_disabled : Colours.text_disabled,
+      disabledColor:  Theme.of(context).backgroundColor,
+      child: Container(
+        height: 48,
+        width: double.infinity,
+        alignment: Alignment.center,
+        child: Text(text, style: TextStyle(fontSize: Dimens.font_sp18),),
+      ),
+    );
+  }
+}
